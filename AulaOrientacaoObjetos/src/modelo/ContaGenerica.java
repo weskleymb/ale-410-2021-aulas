@@ -1,25 +1,27 @@
 package modelo;
 
-public class Conta {
+public abstract class ContaGenerica {
 
     // atributos
     private Integer numero;
-    private String titular;
+    private Pessoa titular;
     protected Double saldo;
 
     // construtores
-    public Conta(Integer numero, String titular) {
+    public ContaGenerica(Integer numero, Pessoa titular) {
         this.numero = numero;
         this.titular = titular;
         this.saldo = 0.0;
     }
+
+    // metodos abstratos
 
     // metodos
     public Integer getNumero() {
         return numero;
     }
 
-    public String getTitular() {
+    public Pessoa getTitular() {
         return titular;
     }
 
@@ -43,7 +45,7 @@ public class Conta {
         return false;
     }
 
-    public Boolean transferir(Double valor, Conta contaDestino) {
+    public Boolean transferir(Double valor, ContaGenerica contaDestino) {
         if (this.sacar(valor)) {
             return contaDestino.depositar(valor);
         }

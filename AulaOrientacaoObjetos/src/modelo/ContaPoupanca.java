@@ -1,12 +1,10 @@
 package modelo;
 
-import modelo.Conta;
-
-public class ContaPoupanca extends Conta {
+public class ContaPoupanca extends ContaGenerica {
 
     private final Double PERCENTUAL = 1.0 / 100.0;
 
-    public ContaPoupanca(Integer numero, String titular) {
+    public ContaPoupanca(Integer numero, Pessoa titular) {
         super(numero, titular);
     }
 

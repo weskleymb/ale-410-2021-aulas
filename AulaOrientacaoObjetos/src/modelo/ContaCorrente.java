@@ -1,14 +1,12 @@
 package modelo;
 
-import modelo.Conta;
-
-public class ContaCorrente extends Conta {
+public class ContaCorrente extends ContaGenerica {
 
     private final Double TAXA = 1.0;
 
     private Double limite;
 
-    public ContaCorrente(Integer numero, String titular, Double limite) {
+    public ContaCorrente(Integer numero, Pessoa titular, Double limite) {
         super(numero, titular);
         this.limite = limite;
     }
