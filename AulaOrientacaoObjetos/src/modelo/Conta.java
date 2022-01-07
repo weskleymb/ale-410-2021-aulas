@@ -1,3 +1,5 @@
+package modelo;
+
 public class Conta {
 
     // atributos
@@ -50,7 +52,7 @@ public class Conta {
 
     @Override
     public String toString() {
-        return "Conta{" +
+        return "modelo.Conta{" +
                 "numero=" + numero +
                 ", titular='" + titular + '\'' +
                 ", saldo=" + saldo +

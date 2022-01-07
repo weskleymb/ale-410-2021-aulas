@@ -1,3 +1,7 @@
+package modelo;
+
+import modelo.Conta;
+
 public class ContaCorrente extends Conta {
 
     private final Double TAXA = 1.0;
@@ -14,7 +18,7 @@ public class ContaCorrente extends Conta {
         Double valorComTaxa = valor + TAXA;
         Double saldoComLimite = saldo + limite;
         if (valor >= 0 && valorComTaxa <= saldoComLimite) {
-            saldo = saldo - valorComTaxa;
+            saldo -= valorComTaxa;
             return true;
         }
         return false;

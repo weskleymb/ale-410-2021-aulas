@@ -1,3 +1,7 @@
+package teste;
+
+import modelo.Lampada;
+
 public class TestaLampada {
 
     public static void main(String[] args) {

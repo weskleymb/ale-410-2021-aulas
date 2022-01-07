@@ -1,3 +1,8 @@
+package teste;
+
+import modelo.ContaCorrente;
+import modelo.ContaPoupanca;
+
 public class TestaConta {
 
     public static void main(String[] args) {

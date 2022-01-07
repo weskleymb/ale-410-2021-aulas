@@ -1,3 +1,5 @@
+package modelo;
+
 public class Lampada {
 
     // propriedades (atributos)
@@ -8,22 +10,22 @@ public class Lampada {
     private Boolean estado = false;
 
     // funcionalidades (metodos)
-    void ligar() {
+    public void ligar() {
         estado = true;
     }
 
-    void desligar() {
+    public void desligar() {
         estado = false;
     }
 
-    String verEstado() {
+    public String verEstado() {
         if (estado) {
             return "LIGADA";
         }
         return "DESLIGADA";
     }
 
-    void modificarCor(String novaCor) {
+    public void modificarCor(String novaCor) {
         if (novaCor.equalsIgnoreCase("branca")
                 || novaCor.equalsIgnoreCase("amarela")) {
             cor = novaCor;
@@ -32,11 +34,11 @@ public class Lampada {
         }
     }
 
-    String verCor() {
+    public String verCor() {
         return cor;
     }
 
-    void modificarLuminosidade(Double novaLuminosidade) {
+    public void modificarLuminosidade(Double novaLuminosidade) {
         Boolean luminosidadeValida = novaLuminosidade >= 0.0;
         if (luminosidadeValida) {
             luminosidade = novaLuminosidade;
@@ -45,11 +47,11 @@ public class Lampada {
         }
     }
 
-    Double verLuminosidade() {
+    public Double verLuminosidade() {
         return luminosidade;
     }
 
-    void modificarComprimento(Double novoComprimento) {
+    public void modificarComprimento(Double novoComprimento) {
         Boolean comprimentoValido = novoComprimento >= 0.0;
         if (comprimentoValido) {
             comprimento = novoComprimento;
@@ -58,11 +60,11 @@ public class Lampada {
         }
     }
 
-    Double verComprimento() {
+    public Double verComprimento() {
         return comprimento;
     }
 
-    void modificarPotencia(Double novaPotencia) {
+    public void modificarPotencia(Double novaPotencia) {
         Boolean potenciaValida = novaPotencia >= 0.0;
         if (potenciaValida) {
             potencia = novaPotencia;
@@ -71,12 +73,12 @@ public class Lampada {
         }
     }
 
-    Double verPotencia() {
+    public Double verPotencia() {
         return potencia;
     }
 
-    String verPropriedades() {
-        return "Lampada[cor='" + verCor() + "', " +
+    public String verPropriedades() {
+        return "modelo.Lampada[cor='" + verCor() + "', " +
                 "luminosidade=" + verLuminosidade() + ", " +
                 "comprimento=" + verComprimento() + ", " +
                 "potencia=" + verPotencia() + ", " +

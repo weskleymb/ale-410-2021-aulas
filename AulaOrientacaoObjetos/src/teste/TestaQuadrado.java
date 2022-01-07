@@ -1,3 +1,7 @@
+package teste;
+
+import modelo.Quadrado;
+
 public class TestaQuadrado {
 
     public static void main(String[] args) {

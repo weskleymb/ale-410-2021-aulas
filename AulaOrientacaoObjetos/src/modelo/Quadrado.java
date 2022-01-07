@@ -1,3 +1,5 @@
+package modelo;
+
 public class Quadrado {
 
     // atributos
@@ -33,7 +35,7 @@ public class Quadrado {
 
     @Override
     public String toString() {
-        return "Quadrado{" +
+        return "modelo.Quadrado{" +
                 "identificacao='" + identificacao + '\'' +
                 ", lado=" + lado +
                 '}';
