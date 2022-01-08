@@ -1,7 +1,5 @@
 package modelo;
 
-import java.util.Locale;
-
 public class Pessoa {
 
     // atributos
@@ -37,5 +35,5 @@ public class Pessoa {
                 ", sexo=" + sexo +
                 '}';
     }
-    
+
 }
