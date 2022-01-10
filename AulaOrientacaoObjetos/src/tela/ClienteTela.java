@@ -5,6 +5,18 @@ import java.util.Scanner;
 public class ClienteTela {
 
     public void mostrarTela(Scanner entrada) {
+
+        this.mostrarOpcoes();
+        Integer escolha = entrada.nextInt();
+
+        switch (escolha) {
+            case 9:
+                AplicacaoBanco.main(null);
+                break;
+        }
+    }
+
+    private void mostrarOpcoes() {
         System.out.println("|========================|");
         System.out.println("|-Cliente----------------|");
         System.out.println("|========================|");
@@ -15,14 +27,6 @@ public class ClienteTela {
         System.out.println("|========================|");
         System.out.println("");
         System.out.println("Escolha a opção desejada: ");
-        Integer escolha = entrada.nextInt();
-
-
-        switch (escolha) {
-            case 9:
-                AplicacaoBanco.main(null);
-                break;
-        }
     }
 
 }
