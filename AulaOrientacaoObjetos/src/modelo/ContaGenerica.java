@@ -3,13 +3,16 @@ package modelo;
 public abstract class ContaGenerica {
 
     // atributos
+    private static Integer contadorContas = 0;
+
     private Integer numero;
     private Pessoa titular;
     protected Double saldo;
 
     // construtores
-    public ContaGenerica(Integer numero, Pessoa titular) {
-        this.numero = numero;
+    public ContaGenerica(Pessoa titular) {
+        contadorContas++;
+        this.numero = contadorContas;
         this.titular = titular;
         this.saldo = 0.0;
     }

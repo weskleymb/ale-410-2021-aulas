@@ -6,8 +6,8 @@ public class ContaCorrente extends ContaGenerica {
 
     private Double limite;
 
-    public ContaCorrente(Integer numero, Pessoa titular, Double limite) {
-        super(numero, titular);
+    public ContaCorrente(Pessoa titular, Double limite) {
+        super(titular);
         this.limite = limite;
     }
 
