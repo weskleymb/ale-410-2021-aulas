@@ -13,12 +13,14 @@ public class AplicacaoBanco {
 
         switch (opcaoEscolhida) {
             case 1:
-                // ir para opções de cliente"
+                // ir para opções de cliente
                 ClienteTela clienteTela = new ClienteTela();
                 clienteTela.mostrarTela(entrada);
                 break;
             case 2:
-                System.out.println("ir para opções de conta");
+                // ir para opções de conta
+                ContaTela contaTela = new ContaTela();
+                contaTela.mostrarTela(entrada);
                 break;
             case 9:
                 System.out.println("ATE MAIS");
