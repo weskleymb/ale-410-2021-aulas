@@ -4,6 +4,7 @@ import modelo.Pessoa;
 import modelo.Sexo;
 import repositorio.PessoaRepositorio;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ClienteTela {
@@ -20,6 +21,9 @@ public class ClienteTela {
             case 3:
                 removerCliente(entrada);
                 break;
+            case 4:
+                buscarPorNome(entrada);
+                break;
             case 5:
                 buscarTodos(entrada);
                 break;
@@ -29,19 +33,35 @@ public class ClienteTela {
         }
     }
 
-    private void removerCliente(Scanner entrada) {
-        PessoaRepositorio clienteRepositorio = new PessoaRepositorio();
-
-        System.out.println("Informe o nome do cliente a ser removido:");
+    private void buscarPorNome(Scanner entrada) {
+        System.out.println("Informe o nome do cliente procurado:");
         String nomeCliente = entrada.next();
+
+        PessoaRepositorio clienteRepositorio = new PessoaRepositorio();
 
         Pessoa cliente = clienteRepositorio.buscarPorNome(nomeCliente);
 
-        System.out.println(cliente);
+        if (cliente != null) {
+            System.out.println(cliente);
+        } else {
+            System.out.println("CLIENTE NÃO ENCONTRADO");
+        }
+
+        mostrarTela(entrada);
+    }
+
+    private void removerCliente(Scanner entrada) {
+        System.out.println("Informe o nome do cliente a ser removido:");
+        String nomeCliente = entrada.next();
+
+        PessoaRepositorio clienteRepositorio = new PessoaRepositorio();
+        Pessoa cliente = clienteRepositorio.buscarPorNome(nomeCliente);
 
         if (cliente != null) {
-            System.out.println("entrou");
             clienteRepositorio.remover(cliente);
+            System.out.println("CLIENTE REMOVIDO COM SUCESSO!!!");
+        } else {
+            System.out.println("CLIENTE NÃO ENCONTRADO!!!");
         }
 
         mostrarTela(entrada);
@@ -49,9 +69,16 @@ public class ClienteTela {
 
     private void buscarTodos(Scanner entrada) {
         PessoaRepositorio clienteRepositorio = new PessoaRepositorio();
-        for (Pessoa cliente : clienteRepositorio.buscarTodos()) {
-            System.out.println(cliente);
+        List<Pessoa> clientes = clienteRepositorio.buscarTodos();
+
+        if (clientes.size() != 0) {
+            for (Pessoa cliente : clientes) {
+                System.out.println(cliente);
+            }
+        } else {
+            System.out.println("NÃO CONSTAM CLIENTES CADASTRADOS!!!");
         }
+
         mostrarTela(entrada);
     }
 
