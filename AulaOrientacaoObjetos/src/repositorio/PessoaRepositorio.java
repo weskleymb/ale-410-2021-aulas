@@ -30,7 +30,7 @@ public class PessoaRepositorio implements RepositorioGenerico<Pessoa> {
 
     public Pessoa buscarPorNome(String nome) {
         for (Pessoa cliente : repositorio) {
-            if (cliente.getNome().equals(nome)) {
+            if (cliente.getNome().equalsIgnoreCase(nome.trim())) {
                 return cliente;
             }
         }

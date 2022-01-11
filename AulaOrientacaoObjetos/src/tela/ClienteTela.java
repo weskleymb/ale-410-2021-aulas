@@ -17,6 +17,9 @@ public class ClienteTela {
             case 1:
                 cadastrarCliente(entrada);
                 break;
+            case 3:
+                removerCliente(entrada);
+                break;
             case 5:
                 buscarTodos(entrada);
                 break;
@@ -26,9 +29,29 @@ public class ClienteTela {
         }
     }
 
+    private void removerCliente(Scanner entrada) {
+        PessoaRepositorio clienteRepositorio = new PessoaRepositorio();
+
+        System.out.println("Informe o nome do cliente a ser removido:");
+        String nomeCliente = entrada.next();
+
+        Pessoa cliente = clienteRepositorio.buscarPorNome(nomeCliente);
+
+        System.out.println(cliente);
+
+        if (cliente != null) {
+            System.out.println("entrou");
+            clienteRepositorio.remover(cliente);
+        }
+
+        mostrarTela(entrada);
+    }
+
     private void buscarTodos(Scanner entrada) {
         PessoaRepositorio clienteRepositorio = new PessoaRepositorio();
-        System.out.println(clienteRepositorio.buscarTodos());
+        for (Pessoa cliente : clienteRepositorio.buscarTodos()) {
+            System.out.println(cliente);
+        }
         mostrarTela(entrada);
     }
 
