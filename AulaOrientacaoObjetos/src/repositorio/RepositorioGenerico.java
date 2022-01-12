@@ -1,5 +1,7 @@
 package repositorio;
 
+import java.util.List;
+
 public interface RepositorioGenerico<T> {
 
     void salvar(T objeto);
@@ -7,5 +9,7 @@ public interface RepositorioGenerico<T> {
     void remover(T objeto);
 
     void alterar(T objeto);
+
+    List<T> buscarTodos();
 
 }

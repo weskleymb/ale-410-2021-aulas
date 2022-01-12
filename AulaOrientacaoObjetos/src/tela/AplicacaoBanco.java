@@ -8,7 +8,7 @@ public class AplicacaoBanco {
 
         Scanner entrada = new Scanner(System.in);
 
-        AplicacaoBanco.mostrarOpcoes();
+        mostrarOpcoes();
         Integer opcaoEscolhida = entrada.nextInt();
 
         switch (opcaoEscolhida) {
