@@ -22,4 +22,14 @@ public class ContaCorrente extends ContaGenerica {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "ContaCorrente{" +
+                "numero=" + numero +
+                ", titular=" + titular +
+                ", saldo=" + saldo +
+                ", limite=" + limite +
+                '}';
+    }
+
 }

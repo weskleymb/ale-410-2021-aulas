@@ -5,8 +5,8 @@ public abstract class ContaGenerica {
     // atributos
     private static Integer contadorContas = 0;
 
-    private Integer numero;
-    private Pessoa titular;
+    protected Integer numero;
+    protected Pessoa titular;
     protected Double saldo;
 
     // construtores

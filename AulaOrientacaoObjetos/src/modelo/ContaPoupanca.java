@@ -13,4 +13,13 @@ public class ContaPoupanca extends ContaGenerica {
         depositar(rendimento);
     }
 
+    @Override
+    public String toString() {
+        return "ContaPoupanca{" +
+                "numero=" + numero +
+                ", titular=" + titular +
+                ", saldo=" + saldo +
+                '}';
+    }
+
 }
