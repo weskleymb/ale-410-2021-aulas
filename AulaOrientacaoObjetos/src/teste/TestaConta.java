@@ -1,6 +1,5 @@
 package teste;
 
-import modelo.ContaGenerica;
 import modelo.ContaCorrente;
 import modelo.ContaPoupanca;
 import modelo.Pessoa;
