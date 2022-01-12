@@ -71,14 +71,14 @@ public class ContaTela {
     }
 
     private void mostrarOpcoes() {
-        System.out.println("|========================|");
+        System.out.println("+------------------------+");
         System.out.println("|-Conta------------------|");
-        System.out.println("|========================|");
+        System.out.println("|------------------------|");
         System.out.println("| 1 - Cadastrar----------|");
         System.out.println("| 2 - Cancelar-----------|");
         System.out.println("| 3 - Entrar-------------|");
         System.out.println("| 9 - Voltar-------------|");
-        System.out.println("|========================|");
+        System.out.println("+------------------------+");
         System.out.println("");
         System.out.println("Escolha a opção desejada: ");
     }

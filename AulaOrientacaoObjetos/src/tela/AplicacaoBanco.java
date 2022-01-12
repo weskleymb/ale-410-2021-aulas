@@ -31,13 +31,13 @@ public class AplicacaoBanco {
     }
 
     private static void mostrarOpcoes() {
-        System.out.println("|========================|");
+        System.out.println("+------------------------+");
         System.out.println("|-----Banco do Senac-----|");
-        System.out.println("|========================|");
+        System.out.println("|------------------------|");
         System.out.println("| 1 - Cliente------------|");
         System.out.println("| 2 - Conta--------------|");
         System.out.println("| 9 - Sair---------------|");
-        System.out.println("|========================|");
+        System.out.println("+------------------------+");
         System.out.println("");
         System.out.println("Escolha a opção desejada: ");
     }
