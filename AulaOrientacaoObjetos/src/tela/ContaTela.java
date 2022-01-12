@@ -19,10 +19,30 @@ public class ContaTela {
             case 1:
                 cadastrarConta(entrada);
                 break;
+            case 3:
+                entrarConta(entrada);
+                break;
             case 9:
                 AplicacaoBanco.main(null);
                 break;
         }
+    }
+
+    private void entrarConta(Scanner entrada) {
+        System.out.println("Informe o número da conta:");
+        Integer numeroConta = entrada.nextInt();
+
+        ContaRepositorio contaRepositorio = new ContaRepositorio();
+        ContaGenerica conta = contaRepositorio.buscarPeloNumero(numeroConta);
+
+        if (conta != null) {
+            LoginConta loginConta = new LoginConta();
+            loginConta.mostrarTela(entrada, conta);
+        } else {
+            System.out.println("Numero de conta invalido");
+            mostrarTela(entrada);
+        }
+
     }
 
     private void cadastrarConta(Scanner entrada) {

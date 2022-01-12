@@ -29,4 +29,12 @@ public class ContaRepositorio implements RepositorioGenerico<ContaGenerica> {
         return new ArrayList<ContaGenerica>(repositorio);
     }
 
+    public ContaGenerica buscarPeloNumero(Integer numeroConta) {
+        for (ContaGenerica conta : repositorio) {
+            if (conta.getNumero().equals(numeroConta)) {
+                return conta;
+            }
+        }
+        return null;
+    }
 }
