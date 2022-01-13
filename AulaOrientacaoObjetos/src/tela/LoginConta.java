@@ -1,6 +1,7 @@
 package tela;
 
 import modelo.ContaGenerica;
+import repositorio.ContaRepositorio;
 
 import java.util.Scanner;
 
@@ -14,8 +15,34 @@ public class LoginConta {
             case 1:
                 depositar(entrada, conta);
                 break;
+            case 2:
+                sacar(entrada, conta);
+                break;
+            case 3:
+                transferir(entrada, conta);
+                break;
+            case 9:
+                AplicacaoBanco.main(null);
+                break;
         }
     }
+
+    private void transferir(Scanner entrada, ContaGenerica conta) {
+        System.out.println("Informe o valor a ser transferido:");
+        Double valor = entrada.nextDouble();
+
+        System.out.println("Informe o numero da conta de destino:");
+        Integer numeroContaDestino = entrada.nextInt();
+
+        ContaRepositorio contaRepositorio = new ContaRepositorio();
+        ContaGenerica contaDestino = contaRepositorio.buscarPeloNumero(numeroContaDestino);
+
+        conta.transferir(valor, contaDestino);
+
+        mostrarTela(entrada, conta);
+    }
+
+    private void sacar(Scanner entrada, ContaGenerica conta) {}
 
     private void depositar(Scanner entrada, ContaGenerica conta) {
         System.out.println("Informe o valor a ser depositado:");
