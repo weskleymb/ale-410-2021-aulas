@@ -61,7 +61,7 @@ public class GuiLogin extends JFrame {
                 String login = campoLogin.getText();
                 String senha = String.valueOf(campoSenha.getPassword());
 
-                if (login.equals("java") && senha.equals("java")) {
+                if (login.equals("") && senha.equals("")) {
                     GuiMenuPrincipal.abrir();
                     janela.setVisible(false);
                 } else {
