@@ -11,9 +11,14 @@ Métodos: Envelhercer,
         menor que 21 anos, ela deve crescer 0,5 cm.
  */
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Pessoa {
 
     // atributos
+    @Id
     private String nome;
     private Integer idade;
     private Double peso;
@@ -25,6 +30,10 @@ public class Pessoa {
         this.idade = idade;
         this.peso = peso;
         this.altura = altura;
+    }
+
+    public Pessoa() {
+
     }
 
     // metodos
