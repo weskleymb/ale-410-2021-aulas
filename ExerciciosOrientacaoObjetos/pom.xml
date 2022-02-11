@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>br.senac.rn</groupId>
-    <artifactId>exercicios-oo</artifactId>
+    <artifactId>exercicios</artifactId>
     <version>1.0</version>
 
     <dependencies>
@@ -20,5 +20,9 @@
             <version>42.3.2</version>
         </dependency>
     </dependencies>
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
 
 </project>
