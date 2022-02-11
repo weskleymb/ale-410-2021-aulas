@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -15,7 +16,7 @@ public class GuiMenuPrincipal extends JFrame {
     private Container painelDeConteudo;
     private JMenuBar barraDeMenu;
     private JMenu menuArquivo, menuExemplos;
-    private JMenuItem itemSair, itemBotao;
+    private JMenuItem itemSair, itemBotao, itemCaixaOpcao, itemBotaoOpcao;
 
     public GuiMenuPrincipal() {
         inicializarComponentes();
@@ -44,6 +45,14 @@ public class GuiMenuPrincipal extends JFrame {
 
         menuExemplos.add(itemBotao);
 
+        itemCaixaOpcao = new JMenuItem("Caixa de Opção");
+
+        menuExemplos.add(itemCaixaOpcao);
+
+        itemBotaoOpcao = new JMenuItem("Botão de Opção");
+
+        menuExemplos.add(itemBotaoOpcao);
+
         barraDeMenu.add(menuExemplos);
 
         setJMenuBar(barraDeMenu);
@@ -56,6 +65,30 @@ public class GuiMenuPrincipal extends JFrame {
                 System.exit(0);
             }
         });
+        itemBotao.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirPainel(new GuiBotao());
+            }
+        });
+        itemCaixaOpcao.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirPainel(new GuiCaixaOpcao());
+            }
+        });
+        itemBotaoOpcao.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirPainel(new GuiBotaoOpcao());
+            }
+        });
+    }
+
+    private void abrirPainel(JPanel painel) {
+        painelDeConteudo.removeAll();
+        painelDeConteudo.add(painel);
+        painelDeConteudo.validate();
     }
 
     public static void abrir() {
