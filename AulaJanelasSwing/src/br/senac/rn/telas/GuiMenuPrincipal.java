@@ -17,6 +17,7 @@ public class GuiMenuPrincipal extends JFrame {
     private JMenuBar barraDeMenu;
     private JMenu menuArquivo, menuExemplos;
     private JMenuItem itemSair, itemBotao, itemCaixaOpcao, itemBotaoOpcao;
+    private JMenuItem itemListaOpcoes;
 
     public GuiMenuPrincipal() {
         inicializarComponentes();
@@ -32,27 +33,20 @@ public class GuiMenuPrincipal extends JFrame {
         barraDeMenu = new JMenuBar();
 
         menuArquivo = new JMenu("Arquivo");
-
         itemSair = new JMenuItem("Sair");
-
         menuArquivo.add(itemSair);
 
-        barraDeMenu.add(menuArquivo);
-
         menuExemplos = new JMenu("Exemplos");
-
         itemBotao = new JMenuItem("Botão");
-
         menuExemplos.add(itemBotao);
-
         itemCaixaOpcao = new JMenuItem("Caixa de Opção");
-
         menuExemplos.add(itemCaixaOpcao);
-
         itemBotaoOpcao = new JMenuItem("Botão de Opção");
-
         menuExemplos.add(itemBotaoOpcao);
+        itemListaOpcoes = new JMenuItem("Lista de Opções");
+        menuExemplos.add(itemListaOpcoes);
 
+        barraDeMenu.add(menuArquivo);
         barraDeMenu.add(menuExemplos);
 
         setJMenuBar(barraDeMenu);
@@ -81,6 +75,12 @@ public class GuiMenuPrincipal extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 abrirPainel(new GuiBotaoOpcao());
+            }
+        });
+        itemListaOpcoes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirPainel(new GuiListaOpcoes());
             }
         });
     }
