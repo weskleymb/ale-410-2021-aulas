@@ -17,7 +17,7 @@ public class GuiMenuPrincipal extends JFrame {
     private JMenuBar barraDeMenu;
     private JMenu menuArquivo, menuExemplos;
     private JMenuItem itemSair, itemBotao, itemCaixaOpcao, itemBotaoOpcao;
-    private JMenuItem itemListaOpcoes;
+    private JMenuItem itemListaOpcoes, itemLista;
 
     public GuiMenuPrincipal() {
         inicializarComponentes();
@@ -45,6 +45,8 @@ public class GuiMenuPrincipal extends JFrame {
         menuExemplos.add(itemBotaoOpcao);
         itemListaOpcoes = new JMenuItem("Lista de Opções");
         menuExemplos.add(itemListaOpcoes);
+        itemLista = new JMenuItem("Lista");
+        menuExemplos.add(itemLista);
 
         barraDeMenu.add(menuArquivo);
         barraDeMenu.add(menuExemplos);
@@ -81,6 +83,12 @@ public class GuiMenuPrincipal extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 abrirPainel(new GuiListaOpcoes());
+            }
+        });
+        itemLista.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirPainel(new GuiLista());
             }
         });
     }
