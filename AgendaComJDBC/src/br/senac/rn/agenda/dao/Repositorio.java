@@ -4,9 +4,7 @@ import java.util.List;
 
 public interface Repositorio<T, PK> {
 
-    Boolean insert(T t);
-
-    Boolean update(T t);
+    void save(T t);
 
     Boolean delete(T t);
 

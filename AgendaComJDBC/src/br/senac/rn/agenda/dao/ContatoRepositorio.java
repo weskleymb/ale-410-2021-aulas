@@ -17,7 +17,15 @@ public class ContatoRepositorio implements Repositorio<Contato, Integer> {
     }
 
     @Override
-    public Boolean insert(Contato contato) {
+    public void save(Contato contato) {
+        if (selectByPK(contato.getId()) == null) {
+            insert(contato);
+        } else {
+            update(contato);
+        }
+    }
+
+    private Boolean insert(Contato contato) {
         String sql = "insert into tb_contatos (con_nome, con_fone) values (?, ?)";
         try {
             PreparedStatement statement = conexao.abrir().prepareStatement(sql);
@@ -31,9 +39,19 @@ public class ContatoRepositorio implements Repositorio<Contato, Integer> {
         return false;
     }
 
-    @Override
-    public Boolean update(Contato contato) {
-        return null;
+    private Boolean update(Contato contato) {
+        String sql = "UPDATE tb_contatos SET con_nome = ?, con_fone = ? WHERE con_id = ?";
+        try {
+            PreparedStatement statement = conexao.abrir().prepareStatement(sql);
+            statement.setString(1, contato.getNome());
+            statement.setString(2, contato.getFone());
+            statement.setInt(3, contato.getId());
+            statement.execute();
+            return true;
+        } catch (SQLException erro) {
+            System.out.println(erro.getMessage());
+        }
+        return false;
     }
 
     @Override
@@ -94,7 +112,7 @@ public class ContatoRepositorio implements Repositorio<Contato, Integer> {
             resultSet.close();
             statement.close();
             return contato;
-        } catch (SQLException erro) {
+        } catch (SQLException | NullPointerException erro) {
             System.out.println(erro.getMessage());
         }
         return null;

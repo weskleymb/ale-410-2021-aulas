@@ -9,10 +9,13 @@ public class App {
         System.out.println("Minha agenda");
 
         ContatoRepositorio repositorio = new ContatoRepositorio();
-//        System.out.println(repositorio.selectAll());
+//        System.out.println(repositorio.selectByPK(1));
+//        repositorio.
 
-        Contato jonatas = new Contato("Jonatas", "84988559558");
-        repositorio.insert(jonatas);
+        Contato weskley = new Contato("chico tripa", "84996753679");
+        repositorio.save(weskley);
+
+        System.out.println(repositorio.selectAll());
     }
 
 }
