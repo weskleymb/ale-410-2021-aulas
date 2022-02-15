@@ -12,14 +12,14 @@ public class Contato {
     public Contato() {}
 
     public Contato(String nome, String fone) {
-        this.nome = nome;
-        this.fone = fone;
+        setNome(nome);
+        setFone(fone);
     }
 
     public Contato(Integer id, String nome, String fone) {
         this.id = id;
-        this.nome = nome;
-        this.fone = fone;
+        setNome(nome);
+        setFone(fone);
     }
 
     public void setId(Integer id) {
