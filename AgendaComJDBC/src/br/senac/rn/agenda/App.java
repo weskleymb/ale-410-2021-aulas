@@ -2,6 +2,7 @@ package br.senac.rn.agenda;
 
 import br.senac.rn.agenda.dao.ContatoRepositorio;
 import br.senac.rn.agenda.dominio.Contato;
+import br.senac.rn.agenda.dominio.TipoDeTelefone;
 
 public class App {
 
@@ -16,6 +17,8 @@ public class App {
         repositorio.save(weskley);
 
         System.out.println(repositorio.selectAll());
+
+
     }
 
 }
