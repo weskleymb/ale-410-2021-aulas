@@ -8,7 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class TipoDeTelefoneRepositorio implements Repositorio<TipoDeTelefone, Integer> {
+public class TipoDeTelefoneRepositorio
+        implements Repositorio<TipoDeTelefone, Integer> {
 
     private ConexaoDB conexao;
 
