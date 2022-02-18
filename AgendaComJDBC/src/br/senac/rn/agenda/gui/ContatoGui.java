@@ -6,6 +6,7 @@ import br.senac.rn.agenda.dominio.Contato;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -18,6 +19,8 @@ import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
 
 public class ContatoGui extends JFrame {
@@ -102,7 +105,13 @@ public class ContatoGui extends JFrame {
     }
 
     private void carregarTodosContatos() {
-        List<Contato> contatos = new ContatoRepositorio().selectAll();
+        List<Contato> contatos = null;
+        ContatoRepositorio repositorio = new ContatoRepositorio();
+        if (campoPesquisar.getText().isBlank()) {
+            contatos = repositorio.selectAll();
+        } else {
+            contatos = repositorio.selectByFilter(campoPesquisar.getText().toUpperCase());
+        }
         for (Contato contato : contatos) {
             Object linha[] = {contato.getId(), contato.getNome(), contato.getFone()};
             formatoDaTabela.addRow(linha);
@@ -113,10 +122,54 @@ public class ContatoGui extends JFrame {
         botaoNovo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FormContatoGui formulario = new FormContatoGui();
-                formulario.abrir();
+                new FormContatoGui(new Contato(), formatoDaTabela).abrir();
             }
         });
+        botaoEditar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int linha[] = tabelaContatos.getSelectedRows();
+                if (linha.length == 0) {
+                    JOptionPane.showMessageDialog(null, "Selecione um contato!");
+                    return;
+                } else if (linha.length > 1) {
+                    JOptionPane.showMessageDialog(null, "Selecione apenas um contato!");
+                    return;
+                }
+                Integer id = (Integer) tabelaContatos.getValueAt(linha[0], 0);
+                String nome = (String) tabelaContatos.getValueAt(linha[0], 1);
+                String fone = (String) tabelaContatos.getValueAt(linha[0], 2);
+                new FormContatoGui(new Contato(id, nome, fone), formatoDaTabela).abrir();
+            }
+        });
+        botaoRemover.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                removerContatos(tabelaContatos);
+            }
+        });
+        campoPesquisar.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {}
+
+            @Override
+            public void keyPressed(KeyEvent e) {}
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                inicializarTabela();
+            }
+        });
+    }
+
+    private void removerContatos(JTable tabelaContatos) {
+        int[] linhas = tabelaContatos.getSelectedRows();
+        ContatoRepositorio repositorio = new ContatoRepositorio();
+        for (Integer linha : linhas) {
+            Integer id = (Integer) tabelaContatos.getValueAt(linha, 0);
+            repositorio.deleteByPK(id);
+        }
+        inicializarTabela();
     }
 
     public static void abrir() {

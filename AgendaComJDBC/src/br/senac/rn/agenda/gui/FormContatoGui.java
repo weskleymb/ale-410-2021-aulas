@@ -9,11 +9,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class FormContatoGui extends JFrame {
 
@@ -21,8 +23,12 @@ public class FormContatoGui extends JFrame {
     private JTextField campoNome, campoFone;
     private JButton botaoSalvar;
     private ImageIcon imagemSalvar, imagemContato;
+    private Contato contato;
+    private DefaultTableModel modelo;
 
-    public FormContatoGui() {
+    public FormContatoGui(Contato contato, DefaultTableModel modelo) {
+        this.contato = contato;
+        this.modelo = modelo;
         inicializarComponentes();
         definirEventos();
     }
@@ -45,10 +51,12 @@ public class FormContatoGui extends JFrame {
 
         campoNome = new JTextField();
         campoNome.setBounds(10, 35, 150, 32);
+        campoNome.setText(contato.getNome());
         add(campoNome);
 
         campoFone = new JTextField();
         campoFone.setBounds(170, 35, 130, 32);
+        campoFone.setText(contato.getFone());
         add(campoFone);
 
         imagemSalvar = new ImageIcon("icones/save.png");
@@ -64,15 +72,23 @@ public class FormContatoGui extends JFrame {
         botaoSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String nome = campoNome.getText();
-                String fone = campoFone.getText();
-                Contato contato = new Contato(nome, fone);
                 ContatoRepositorio repositorio = new ContatoRepositorio();
+                contato.setNome(campoNome.getText());
+                contato.setFone(campoFone.getText());
                 repositorio.save(contato);
-                JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
-                limparFormulario();
+                atualizarTabelaContatos();
+                setVisible(false);
             }
         });
+    }
+
+    private void atualizarTabelaContatos() {
+        List<Contato> contatos = new ContatoRepositorio().selectAll();
+        modelo.setRowCount(0);
+        for (Contato contato : contatos) {
+            Object linha[] = {contato.getId(), contato.getNome(), contato.getFone()};
+            modelo.addRow(linha);
+        }
     }
 
     private void limparFormulario() {
@@ -82,8 +98,8 @@ public class FormContatoGui extends JFrame {
     }
 
     public void abrir() {
-        FormContatoGui janela = new FormContatoGui();
-        janela.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        FormContatoGui janela = new FormContatoGui(contato, modelo);
+//        janela.setDefaultCloseOperation(EXIT_ON_CLOSE);
         Dimension resolucao = Toolkit.getDefaultToolkit().getScreenSize();
         Integer eixoX = (resolucao.width - janela.getSize().width) / 2;
         Integer eixoY = (resolucao.height - janela.getSize().height) / 2;

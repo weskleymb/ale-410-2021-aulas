@@ -87,8 +87,6 @@ public class ContatoRepositorio implements Repositorio<Contato, Integer> {
                 Contato contato = new Contato(id, nome, fone);
                 contatos.add(contato);
             }
-            resultSet.close();
-            statement.close();
             return contatos;
         } catch (SQLException erro) {
             System.out.println(erro.getMessage());
@@ -109,10 +107,30 @@ public class ContatoRepositorio implements Repositorio<Contato, Integer> {
                 contato.setNome(resultSet.getString("con_nome"));
                 contato.setFone(resultSet.getString("con_fone"));
             }
-            resultSet.close();
-            statement.close();
             return contato;
         } catch (SQLException | NullPointerException erro) {
+            System.out.println(erro.getMessage());
+        }
+        return null;
+    }
+
+    public List<Contato> selectByFilter(String filter) {
+        List<Contato> contatos = new ArrayList<>();
+        String sql = "SELECT * FROM tb_contatos WHERE UPPER(con_nome) LIKE ? OR con_fone LIKE ?";
+        try {
+            PreparedStatement statement = conexao.abrir().prepareStatement(sql);
+            statement.setString(1, filter + "%");
+            statement.setString(2, filter + "%");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Integer id = resultSet.getInt("con_id");
+                String nome = resultSet.getString("con_nome");
+                String fone = resultSet.getString("con_fone");
+                Contato contato = new Contato(id, nome, fone);
+                contatos.add(contato);
+            }
+            return contatos;
+        } catch (SQLException erro) {
             System.out.println(erro.getMessage());
         }
         return null;
