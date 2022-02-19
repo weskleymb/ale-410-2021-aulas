@@ -76,7 +76,7 @@ public class ContatoRepositorio implements Repositorio<Contato, Integer> {
     @Override
     public List<Contato> selectAll() {
         List<Contato> contatos = new ArrayList<>();
-        String sql = "select * from tb_contatos";
+        String sql = "SELECT * FROM tb_contatos ORDER BY con_id ASC";
         try {
             PreparedStatement statement = conexao.abrir().prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
@@ -116,7 +116,7 @@ public class ContatoRepositorio implements Repositorio<Contato, Integer> {
 
     public List<Contato> selectByFilter(String filter) {
         List<Contato> contatos = new ArrayList<>();
-        String sql = "SELECT * FROM tb_contatos WHERE UPPER(con_nome) LIKE ? OR con_fone LIKE ?";
+        String sql = "SELECT * FROM tb_contatos WHERE UPPER(con_nome) LIKE ? OR con_fone LIKE ? ORDER BY con_id ASC";
         try {
             PreparedStatement statement = conexao.abrir().prepareStatement(sql);
             statement.setString(1, filter + "%");
