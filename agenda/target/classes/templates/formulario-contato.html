@@ -6,6 +6,7 @@
     <body>
         <div class="container">
             <form th:object="${contato}" th:action="@{/contatos}" method="post">
+                <input type="hidden" th:field="*{id}">
                 <div class="form-group mt-5">
                     <label for="nome">Nome:</label>
                     <input type="text" th:field="*{nome}" class="form-control">
